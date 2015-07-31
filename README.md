@@ -16,7 +16,7 @@ Students who use this repo are expected to have previously learned about the fol
 2. Conditional branching: ```if```/```if else```/```else```
 2. Looping: ```while``` and ```for```
 3. Arrays: Creating and indexing. For example, ```int[] array = new int[2]; array[0] = 10; array[1] = 20;```
-4. Functions: Students should have learned how to call and write their own functions with and without parameters and return values. For example:
+4. Functions: Students should have learned how to write and call their own functions with and without parameters and return values. For example:
 
 ```java
 public static int add(int a, int b) {
@@ -57,7 +57,7 @@ This repo will ask students to apply the concepts above to create a working vers
 To better prepare students for issues I've tagged each with two labels:
 
 1. Type: bug | enhancement
-    * bug - an issue in the game that needs to be fixed for the bug to work properly
+    * bug - an issue in the game that needs to be fixed for the game to work properly
     * enhancement - a bonus feature that will make the game even better
 2. Difficulty: easy | medium | hard | really hard
     * easy - an easy issue to fix
