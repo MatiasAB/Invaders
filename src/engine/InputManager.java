@@ -71,6 +71,10 @@ public final class InputManager implements KeyListener {
 		return isKeyDown(KeyEvent.VK_SPACE);
 	}
 
+	public boolean is2ndKeyDown(){
+		return isKeyDown(KeyEvent.VK_R) || isKeyDown(KeyEvent.VK_O);
+	}
+
 	/**
 	 * Changes the state of the key to pressed.
 	 * 

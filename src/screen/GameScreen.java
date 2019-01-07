@@ -3,6 +3,14 @@ package screen;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.*;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import engine.*;
 import entity.Bullet;
@@ -137,10 +145,17 @@ public class GameScreen extends Screen {
 			if (!this.ship.isDestroyed()) {
 
 				this.ship.checkMovement(this);
+				if (inputManager.isSpaceKeyDown() && inputManager.is2ndKeyDown()){
+//					this.ship.increaseCooldown();
+					if (this.ship.shootThree(this.bullets))
+						this.gameState.setBulletsShot(this.gameState.getBulletsShot() + 1);
 
-				if (inputManager.isSpaceKeyDown())
+				} else if (inputManager.is2ndKeyDown() == false && inputManager.isSpaceKeyDown() == true){
 					if (this.ship.shoot(this.bullets))
 						this.gameState.setBulletsShot(this.gameState.getBulletsShot() + 1);
+//					this.ship.restoreCooldown();
+				}
+
 			}
 
 			if (this.enemyShipSpecial != null) {
