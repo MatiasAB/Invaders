@@ -55,6 +55,15 @@ public class Ship extends Entity {
 
 		// Detects whether the ship is not touching the left border
 		boolean isShipNotTouchingLeftBorder = !(this.getPositionX() - this.getSpeed() < 1);
+		boolean left = Main.getInputManager().isLeftKeyDown();
+		boolean right = Main.getInputManager().isRightKeyDown();
+		if (left == true && isShipNotTouchingLeftBorder == true){
+			this.moveLeft();
+		}
+		if (right == true && isShipNotTouchingRightBorder == true){
+			this.moveRight();
+		}
+
 	}
 
 	/**
@@ -80,10 +89,22 @@ public class Ship extends Entity {
 	 */
 	public final boolean shoot(final Set<Bullet> bullets) {
 		if (this.shootingCooldown.checkFinished()) {
-			this.shootingCooldown.reset();
+			int duration = this.shootingCooldown.reset(1);
 			bullets.add(BulletPool.getBullet(positionX + this.width / 2,
 					positionY, BULLET_SPEED));
-			return true;
+		}
+		return false;
+	}
+
+	public final boolean shootThree(final Set<Bullet> bullets){
+		if (this.shootingCooldown.checkFinished()) {
+			int duration = this.shootingCooldown.reset(3);
+			bullets.add(BulletPool.getBullet(positionX + this.width / 2,
+					positionY, BULLET_SPEED));
+			bullets.add(BulletPool.getBullet((positionX + this.width / 2) - 50,
+					positionY, BULLET_SPEED));
+			bullets.add(BulletPool.getBullet((positionX + this.width / 2) + 50,
+					positionY, BULLET_SPEED));
 		}
 		return false;
 	}
