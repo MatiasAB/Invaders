@@ -145,25 +145,30 @@ public class GameScreen extends Screen {
 			if (!this.ship.isDestroyed()) {
 
 				this.ship.checkMovement(this);
-				if (inputManager.isSpaceKeyDown() && inputManager.is2ndKeyDown()){
-//					this.ship.increaseCooldown();
-					if (this.ship.shootThree(this.bullets))
-						this.gameState.setBulletsShot(this.gameState.getBulletsShot() + 1);
-
-				} else if (inputManager.is2ndKeyDown() == false && inputManager.isSpaceKeyDown() == true){
-					if (this.ship.shoot(this.bullets))
-						this.gameState.setBulletsShot(this.gameState.getBulletsShot() + 1);
-//					this.ship.restoreCooldown();
+				if (inputManager.isSpaceKeyDown()) {
+					if (inputManager.is2ndKeyDown() && ship.checkRapid(System.currentTimeMillis())) {
+						if (this.ship.shootFast(this.bullets)) {
+							this.gameState.setBulletsShot(this.gameState.getBulletsShot() + 1);
+						}
+					} else if (!ship.checkRapid(System.currentTimeMillis()) && inputManager.is2ndKeyDown()) {
+						if (this.ship.shootThree(this.bullets)) {
+							this.gameState.setBulletsShot(this.gameState.getBulletsShot() + 1);
+						}
+					} else {
+						if (this.ship.shoot(this.bullets)){
+							this.gameState.setBulletsShot(this.gameState.getBulletsShot() + 1);
+						}
+					}
 				}
-
 			}
 
 			if (this.enemyShipSpecial != null) {
-				if (!this.enemyShipSpecial.isDestroyed())
+				if (!this.enemyShipSpecial.isDestroyed()) {
 					this.enemyShipSpecial.move(2, 0);
-				else if (this.enemyShipSpecialExplosionCooldown.checkFinished())
+				} else if (this.enemyShipSpecialExplosionCooldown.checkFinished()) {
 					this.enemyShipSpecial = null;
-
+					this.ship.toggleRapid(false, System.currentTimeMillis());
+				}
 			}
 			if (this.enemyShipSpecial == null
 					&& this.enemyShipSpecialCooldown.checkFinished()) {

@@ -28,6 +28,9 @@ public class Ship extends Entity {
 	/** Time spent inactive between hits. */
 	private Cooldown destructionCooldown;
 
+	public boolean rapidFire;
+	private long rapidStart;
+
 	/**
 	 * Constructor, establishes the ship's properties.
 	 * 
@@ -42,6 +45,8 @@ public class Ship extends Entity {
 		this.spriteType = SpriteType.Ship;
 		this.shootingCooldown = Main.getCooldown(SHOOTING_INTERVAL);
 		this.destructionCooldown = Main.getCooldown(1000);
+		this.rapidStart = -1;
+		this.rapidFire = false;
 	}
 
 	/**
@@ -107,6 +112,39 @@ public class Ship extends Entity {
 					positionY, BULLET_SPEED));
 		}
 		return false;
+	}
+
+	public final boolean shootFast(final Set<Bullet> bullets){
+		if (this.shootingCooldown.checkFinished()){
+			int duration = this.shootingCooldown.reset(1/4);
+			bullets.add(BulletPool.getBullet(positionX + this.width / 2,
+					positionY, BULLET_SPEED));
+			bullets.add(BulletPool.getBullet((positionX + this.width / 2) - 50,
+					positionY, BULLET_SPEED));
+			bullets.add(BulletPool.getBullet((positionX + this.width / 2) + 50,
+					positionY, BULLET_SPEED));
+			bullets.add(BulletPool.getBullet((positionX + this.width / 2),
+					positionY - 50, BULLET_SPEED));
+		}
+		return false;
+	}
+
+	public final void toggleRapid (boolean toggle, long time){
+		if (toggle == false){
+			this.rapidFire = true;
+			this.rapidStart = time;
+		} else {
+			this.rapidFire = false;
+		}
+	}
+
+	public final boolean checkRapid(long time){
+		if (time - this.rapidStart >= 5000 || this.rapidStart <= 0){
+			toggleRapid(true, 0);
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	/**

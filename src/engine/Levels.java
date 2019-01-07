@@ -28,6 +28,7 @@ public class Levels {
     /** Difficulty settings for level 7. */
     public static final GameSettings SETTINGS_LEVEL_7 = new GameSettings(8, 7, 2, 500);
 
+    public static final GameSettings SETTINGS_LEVEL_8 = new GameSettings(8, 8, 10, 100);
     /**
      * Gets a list of levels
      * @return a list of levels
@@ -59,6 +60,7 @@ public class Levels {
 //        gameSettings.add(Levels.SETTINGS_LEVEL_5);
 //        gameSettings.add(Levels.SETTINGS_LEVEL_6);
 //        gameSettings.add(Levels.SETTINGS_LEVEL_7);
+        gameSettings.add(Levels.SETTINGS_LEVEL_8);
 
         return gameSettings;
     }
