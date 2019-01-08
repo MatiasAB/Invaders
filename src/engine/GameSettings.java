@@ -17,6 +17,8 @@ public class GameSettings {
 	/** Frequency of enemy shootings, +/- 30%. */
 	private int shootingFrequency;
 
+	private int levelNumber;
+
 	/**
 	 * Constructor.
 	 * 
@@ -30,11 +32,12 @@ public class GameSettings {
 	 *            Frecuency of enemy shootings, +/- 30%.
 	 */
 	public GameSettings(final int formationWidth, final int formationHeight,
-			final int baseSpeed, final int shootingFrequency) {
+			final int baseSpeed, final int shootingFrequency, int levelNumber) {
 		this.formationWidth = formationWidth;
 		this.formationHeight = formationHeight;
 		this.baseSpeed = baseSpeed;
 		this.shootingFrequency = shootingFrequency;
+		this.levelNumber = levelNumber;
 	}
 
 	/**
@@ -42,6 +45,10 @@ public class GameSettings {
 	 */
 	public final int getFormationWidth() {
 		return formationWidth;
+	}
+
+	public final int getLevelNumber(){
+		return this.levelNumber;
 	}
 
 	/**
