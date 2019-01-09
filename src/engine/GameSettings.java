@@ -32,12 +32,11 @@ public class GameSettings {
 	 *            Frecuency of enemy shootings, +/- 30%.
 	 */
 	public GameSettings(final int formationWidth, final int formationHeight,
-			final int baseSpeed, final int shootingFrequency, int levelNumber) {
+			final int baseSpeed, final int shootingFrequency) {
 		this.formationWidth = formationWidth;
 		this.formationHeight = formationHeight;
 		this.baseSpeed = baseSpeed;
 		this.shootingFrequency = shootingFrequency;
-		this.levelNumber = levelNumber;
 	}
 
 	/**

@@ -95,8 +95,6 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 	/** Number of not destroyed ships. */
 	private int shipCount;
 
-	private int levelNumber;
-
 	/** Directions the formation can move. */
 	private enum Direction {
 		/** Movement to the right side of the screen. */
@@ -113,7 +111,7 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 	 * @param gameSettings
 	 *            Current game settings.
 	 */
-	public EnemyShipFormation(final GameSettings gameSettings, int levelNum) {
+	public EnemyShipFormation(final GameSettings gameSettings) {
 		this.drawManager = Main.getDrawManager();
 		this.logger = Main.getLogger();
 		this.enemyShips = new ArrayList<List<EnemyShip>>();
@@ -129,7 +127,6 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 		this.positionX = INIT_POS_X;
 		this.positionY = INIT_POS_Y;
 		this.shooters = new ArrayList<EnemyShip>();
-		this.levelNumber = levelNum;
 		SpriteType spriteType;
 
 		this.logger.info("Initializing " + nShipsWide + "x" + nShipsHigh
@@ -141,30 +138,34 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 		}
 
 		int x = 0;
-		int lastIndex = 0;
+
 		for (List<EnemyShip> column : this.enemyShips) {
-			int y = nShipsHigh - x;
 			for (int i = 0; i < this.nShipsHigh; i++) {
-				if (i / (float) this.nShipsHigh < PROPORTION_C)
+				if (i / (float) this.nShipsHigh < PROPORTION_C) {
 					spriteType = SpriteType.EnemyShipC1;
-				else if (i / (float) this.nShipsHigh < PROPORTION_B
-						+ PROPORTION_C)
+				}else if (i / (float) this.nShipsHigh < PROPORTION_B
+						+ PROPORTION_C) {
 					spriteType = SpriteType.EnemyShipB1;
-				else
+				} else {
 					spriteType = SpriteType.EnemyShipA1;
-				if (i >= x && i <= y){
+				}
+				if (this.nShipsWide - this.nShipsHigh > 0){
+					if (enemyShips.indexOf(column) >= i && i <= this.nShipsHigh-x){
+						column.add(new EnemyShip((SEPARATION_DISTANCE
+								* this.enemyShips.indexOf(column))
+								+ positionX, (SEPARATION_DISTANCE * i)
+								+ positionY, spriteType));
+						this.shipCount++;
+					}
+				} else {
 					column.add(new EnemyShip((SEPARATION_DISTANCE
 							* this.enemyShips.indexOf(column))
 							+ positionX, (SEPARATION_DISTANCE * i)
 							+ positionY, spriteType));
-					if (i == y){
-						lastIndex = y-2;
-					}
+					this.shipCount++;
 				}
-
-				this.shipCount++;
 			}
-			x++;
+			x++ ;
 		}
 
 		this.shipWidth = this.enemyShips.get(0).get(0).getWidth();
@@ -176,11 +177,9 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 				+ this.shipHeight;
 
 		for (List<EnemyShip> column : this.enemyShips){
-				for (EnemyShip es : column){
-					this.shooters.add(es);
-				}
-
-
+			if (column.size() > 0){
+				this.shooters.add(column.get(column.size()-1));
+			}
 		}
 
 	}

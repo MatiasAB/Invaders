@@ -102,8 +102,7 @@ public class GameScreen extends Screen {
 	public final void initialize() {
 		super.initialize();
 
-		enemyShipFormation = new EnemyShipFormation(this.levelSettings.get(this.gameState.getLevel()- 1),
-				this.levelSettings.get(this.gameState.getLevel()- 1).getLevelNumber());
+		enemyShipFormation = new EnemyShipFormation(this.levelSettings.get(this.gameState.getLevel()- 1));
 		enemyShipFormation.attach(this);
 		this.ship = new Ship(this.getWidth() / 2, this.getHeight() - 30);
 		// Appears each 10-30 seconds.
