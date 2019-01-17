@@ -77,7 +77,10 @@ public final class FileManager {
 			// Sprite loading.
 			for (Map.Entry<SpriteType, boolean[][]> sprite : spriteMap
 					.entrySet()) {
-				for (int i = 0; i < sprite.getValue().length; i++)
+				System.out.println(sprite.getValue().length);
+				System.out.println(sprite.getValue()[0].length);
+				for (int i = 0; i < sprite.getValue().length; i++) {
+
 					for (int j = 0; j < sprite.getValue()[i].length; j++) {
 						do
 							c = (char) inputStream.read();
@@ -88,6 +91,7 @@ public final class FileManager {
 						else
 							sprite.getValue()[i][j] = false;
 					}
+				}
 				logger.fine("Sprite " + sprite.getKey() + " loaded.");
 			}
 			if (inputStream != null)

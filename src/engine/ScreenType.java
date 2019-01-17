@@ -10,4 +10,8 @@ public enum ScreenType {
     HighScoreScreen,
     ScoreScreen,
     TitleScreen,
+    StartScreen,
+    TitleScreen2,
+
+
 }

@@ -1,6 +1,7 @@
 package engine;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -29,22 +30,22 @@ public class Levels {
     public static final GameSettings SETTINGS_LEVEL_7 = new GameSettings(8, 7, 2, 500);
 
     public static final GameSettings SETTINGS_LEVEL_8 = new GameSettings(8, 8, 10, 100);
+
+    public static final ArrayList<GameSettings> gameSettings = new ArrayList();
+
     /**
      * Gets a list of levels
      * @return a list of levels
      */
     public static ArrayList<GameSettings> getLevels() {
-        ArrayList<GameSettings> gameSettings = new ArrayList<GameSettings>();
-        Random rand = new Random();
-        int number = rand.nextInt(7)+1;
-        gameSettings.add(Levels.SETTINGS_LEVEL_1);
-        gameSettings.add(Levels.SETTINGS_LEVEL_2);
-        gameSettings.add(Levels.SETTINGS_LEVEL_3);
-        gameSettings.add(Levels.SETTINGS_LEVEL_4);
-        gameSettings.add(Levels.SETTINGS_LEVEL_5);
-        gameSettings.add(Levels.SETTINGS_LEVEL_6);
-        gameSettings.add(Levels.SETTINGS_LEVEL_7);
-        gameSettings.add(Levels.SETTINGS_LEVEL_8);
+        Levels.gameSettings.add(Levels.SETTINGS_LEVEL_1);
+        Levels.gameSettings.add(Levels.SETTINGS_LEVEL_2);
+        Levels.gameSettings.add(Levels.SETTINGS_LEVEL_3);
+        Levels.gameSettings.add(Levels.SETTINGS_LEVEL_4);
+        Levels.gameSettings.add(Levels.SETTINGS_LEVEL_5);
+        Levels.gameSettings.add(Levels.SETTINGS_LEVEL_6);
+        Levels.gameSettings.add(Levels.SETTINGS_LEVEL_7);
+        Levels.gameSettings.add(Levels.SETTINGS_LEVEL_8);
 
         return gameSettings;
     }

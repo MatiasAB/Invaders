@@ -1,6 +1,7 @@
 package engine;
 
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
@@ -153,5 +154,10 @@ public final class Main {
 	 */
 	public static Frame getFrame() {
 		return Frame;
+	}
+
+	public static void setBigFrame() {
+		Frame = new Frame(800, 800);
+		DrawManager.getInstance().setFrame(Frame);
 	}
 }

@@ -39,6 +39,8 @@ public class GameSettings {
 		this.shootingFrequency = shootingFrequency;
 	}
 
+
+
 	/**
 	 * @return the formationWidth
 	 */

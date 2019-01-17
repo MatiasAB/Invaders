@@ -149,7 +149,7 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 				} else {
 					spriteType = SpriteType.EnemyShipA1;
 				}
-				if (this.nShipsWide - this.nShipsHigh > 0){
+				if (this.nShipsWide - this.nShipsHigh > 0 && this.nShipsWide % 2 != 0){
 					if (enemyShips.indexOf(column) >= i && i <= this.nShipsHigh-x){
 						column.add(new EnemyShip((SEPARATION_DISTANCE
 								* this.enemyShips.indexOf(column))

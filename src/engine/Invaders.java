@@ -4,6 +4,7 @@ import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import screen.*;
 
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by Ryan on 7/28/2015.
@@ -17,12 +18,18 @@ public class Invaders {
 
         // Get a list of levels to play
         List<GameSettings> levelSettings = Levels.getLevels();
-        System.out.println("Loaded " + levelSettings.size() + " levels");
         // Hold on to all of the game's information
         GameState gameState = new GameState(1, 0, Constants.MAX_LIVES, 0, 0);
         
         // Show Title Screen below this line
-        Screen screen = new TitleScreen();
+        Screen start = new StartScreen();
+        start.show();
+        Screen screen;
+        if (start.getNextScreenType() == ScreenType.TitleScreen){
+            screen = new TitleScreen();
+        } else {
+            screen = new TitleScreen2();
+        }
         screen.show();
         ScreenType nextScreenType = screen.getNextScreenType();
         while (nextScreenType != ScreenType.EndGame){

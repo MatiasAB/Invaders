@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import screen.Screen;
 import entity.Entity;
 import entity.Ship;
+import screen.StartScreen;
 
 /**
  * Manages screen drawing.
@@ -49,6 +50,9 @@ public final class DrawManager {
 
 	/** Sprite types mapped to their images. */
 	private static Map<SpriteType, boolean[][]> spriteMap;
+
+
+
 
 	/** Sprite types. */
 	public enum SpriteType {
@@ -283,6 +287,37 @@ public final class DrawManager {
 		backBufferGraphics.drawLine(0, positionY, screen.getWidth(), positionY);
 		backBufferGraphics.drawLine(0, positionY + 1, screen.getWidth(),
 				positionY + 1);
+	}
+
+	public void drawStart(StartScreen startScreen, ScreenType screenOption) {
+		String welcomeStr = "Welcome to Invaders!";
+		String intsStr = "Choose a resolution";
+		String res1 = "448x520";
+		String res2 = "800x800";
+
+		backBufferGraphics.setColor(Color.RED);
+		drawCenteredBigString(startScreen, welcomeStr, startScreen.getHeight()/3);
+
+		backBufferGraphics.setColor(Color.blue);
+		drawCenteredRegularString(startScreen, intsStr, startScreen.getHeight()/2);
+
+		if (screenOption == ScreenType.TitleScreen){
+			backBufferGraphics.setColor(Color.GREEN);
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+		drawCenteredRegularString(startScreen, res1,
+				startScreen.getHeight() / 3 * 2);
+
+		if (screenOption == ScreenType.TitleScreen2){
+			backBufferGraphics.setColor(Color.GREEN);
+		} else {
+			backBufferGraphics.setColor(Color.WHITE);
+		}
+		drawCenteredRegularString(startScreen, res2, startScreen.getHeight()
+				/ 3 * 2 + fontRegularMetrics.getHeight() * 2);
+
+
 	}
 
 	/**

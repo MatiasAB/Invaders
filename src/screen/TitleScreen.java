@@ -117,4 +117,5 @@ public class TitleScreen extends Screen {
 
 		drawManager.completeDrawing(this);
 	}
+
 }
